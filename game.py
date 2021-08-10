@@ -1,18 +1,21 @@
 import pygame
-import pygame.display
-import pygame.event
+from pygame.locals import *
+from fish import Fish
+
 
 class Game:
 
     def __init__(self, screen: pygame.Surface) -> None:
         self.screen = screen
         self.running = True
-    
+        self.fish = Fish(self)
+        self.current_tick = 0
+
     def draw(self):
-        self.screen.fill((0, 0 ,0))
+        self.fish.draw()
         pygame.display.update()
     
-    def update(self):
+    def update(self, tick):
         pass
 
     def event(self):
