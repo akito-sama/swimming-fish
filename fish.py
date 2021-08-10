@@ -6,8 +6,8 @@ class Fish:
 
     def __init__(self, game):
         self.game = game
-        self.x = 0
-        self.y = 0
+        self.x = 200
+        self.y = 200
         self.width, self.height = 20, 20
         self.charge_bar = LoadingBar(self)
 
@@ -21,4 +21,4 @@ class Fish:
 
     def update(self):
         if pygame.key.get_pressed()[pygame.K_SPACE]:
-            self.charge_bar.charge(2)
+            self.charge_bar.charge(5)

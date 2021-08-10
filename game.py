@@ -16,7 +16,7 @@ class Game:
         pygame.display.update()
     
     def update(self, tick):
-        pass
+        self.fish.update()
 
     def event(self):
         for event in pygame.event.get():
