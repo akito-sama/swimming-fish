@@ -12,16 +12,16 @@ class Game:
         self.screen_width, self.screen_height = screen.get_size()
         self.running = True
         self.fish = Fish(self)
-        self.current_tick = 0
 
     def draw(self):
+        self.screen.fill((0, 0, 0))
         self.screen.blit(self.mono_surfaces.water,
                          (0, self.screen_height - self.mono_surfaces.water.get_height()))
         self.fish.draw()
         pygame.display.update()
     
     def update(self, tick):
-        self.fish.update()
+        self.fish.update(tick)
 
     def event(self):
         for event in pygame.event.get():

@@ -11,5 +11,5 @@ game = Game(screen)
 while game.running:
     clock.tick(60)
     game.draw()
-    game.update(clock.get_time())
+    game.update(clock.get_time() / 1000)
     game.event()
