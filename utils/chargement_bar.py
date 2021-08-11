@@ -23,7 +23,8 @@ class LoadingBar:
     def charge(self, amount):
         if 0 <= self.value <= self.limit:
             self.value += amount
-            if 0 < self.value and not 0 <= self.value <= self.limit:
-                self.value = self.limit
-            elif self.limit < self.value and not 0 <= self.value <= self.limit:
-                self.value = 0
+            if not 0 <= self.value <= self.limit:
+                if 0 < self.value:
+                    self.value = self.limit
+                elif self.limit < self.value:
+                    self.value = 0
