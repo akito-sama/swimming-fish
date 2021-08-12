@@ -11,9 +11,8 @@ class Rotator:
                                                      tuple(map(lambda x: x * coef, self.original_image.get_size())),
                                                      )
         self.image = self.original_image.copy()
-        self.image = pygame.transform.rotate(self.original_image, -90)
+        self.angle = 0
 
     def rotate(self):
-        value = round(self.fish.charge_bar.value / self.fish.charge_bar.limit * 180) - 90
-        self.image = pygame.transform.rotate(self.original_image, value)
+        self.image = pygame.transform.rotate(self.original_image, round(self.angle))
         self.fish.rect = self.image.get_rect(center=self.fish.rect.center)

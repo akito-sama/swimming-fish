@@ -1,9 +1,9 @@
 import pygame
-from pygame.locals import *
 from game import Game
 
 pygame.init()
-screen = pygame.display.set_mode((0, 0))
+screen = pygame.display.set_mode((1366, 768))
+print(screen.get_size())
 pygame.display.set_caption("swimming-fish")
 clock = pygame.time.Clock()
 game = Game(screen)
