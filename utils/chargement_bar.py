@@ -17,7 +17,7 @@ class LoadingBar:
 
         pygame.draw.rect(
             self.fish.game.screen,
-            "#9c27e6",
+            "#ffcc00",
             (0, 0, 15, round(self.value)))
 
     def charge(self, amount):

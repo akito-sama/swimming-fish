@@ -23,7 +23,6 @@ class Fish:
     def draw(self):
         self.charge_bar.draw()
         self.game.screen.blit(self.rotator.image, self.rect)
-        pygame.draw.rect(self.game.screen, (0, 255, 0), self.rect, 3)
 
     def update(self, tick):
         pressed = pygame.key.get_pressed()

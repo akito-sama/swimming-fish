@@ -32,9 +32,6 @@ class Game:
                 obstacle.draw()
             self.screen.blit(self.mono_surfaces.water, self.mono_surfaces.water_rect)
             self.fish.draw()
-            if self.obstacles:
-                pygame.draw.rect(self.screen, (255, 0, 0), self.obstacles[0].up_rectangle, 1)
-                pygame.draw.rect(self.screen, (255, 0, 0), self.obstacles[0].down_rectangle, 1)
             self.score.draw()
 
         elif self.state == "title screen":
@@ -63,8 +60,6 @@ class Game:
                     self.state = "title screen"
             elif self.state == "title screen":
                 self.title_screen.event(event)
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                print(event.pos)
 
     def spawn_obstacle(self):
         self.obstacles.append(Obstacle(self, random.randint(-100, 0), random.randint(350, 400)))

@@ -29,8 +29,6 @@ class Obstacle:
     def draw(self):
         self.game.screen.blit(self.game.mono_surfaces.up_pic, self.up_rectangle)
         self.game.screen.blit(self.game.mono_surfaces.pic, self.down_rectangle)
-        pygame.draw.rect(self.game.screen, (255, 0, 0), self.up_rectangle, 1)
-        pygame.draw.rect(self.game.screen, (255, 0, 0), self.down_rectangle, 1)
 
     def check_collision(self):
         for rect in (self.up_rectangle, self.down_rectangle):
