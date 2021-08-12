@@ -12,10 +12,14 @@ class Score:
         self.surface_rect: pygame.Rect = None
         self.update_surface()
 
-    def update_surface(self):
-        self.surface = title_font.render(str(self.score), True, "#f2516d")
-        self.surface_rect = self.surface.get_rect(x=self.game.screen_width - self.surface.get_width(),
-                                                  y=0)
+    def update_surface(self, add_score_label=False):
+        if add_score_label:
+            self.surface = title_font.render(f"your score is Score : {self.score}", True, "#f2516d")
+            self.end()
+        else:
+            self.surface = title_font.render(str(self.score), True, "#f2516d")
+            self.surface_rect = self.surface.get_rect(x=self.game.screen_width - self.surface.get_width(),
+                                                        y=0)
 
     def add_score(self, amount):
         self.score += amount
@@ -26,7 +30,7 @@ class Score:
 
     def end(self):
         self.surface_rect.x, self.surface_rect.y = (self.game.screen_width // 2 - self.surface.get_width() // 2,
-                                                    self.game.screen_height // 2 - self.surface.get_height() // 2)
+                                                    self.game.screen_height // 2 - self.surface.get_height() // 2 - 200)
 
     def reset(self):
         self.score = 0

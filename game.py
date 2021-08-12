@@ -6,6 +6,7 @@ import customevents
 import random
 from titlescreen import TitleScreen
 from scorelabel import Score
+from birdcow import BirdCow
 
 
 class Game:
@@ -21,6 +22,8 @@ class Game:
         self.spawn_obstacle()
         self.title_screen = TitleScreen(self)
         self.state = "title screen"
+        self.all_birds = []
+        self.spawn_bird()
         pygame.mixer.music.load("sounds/background.ogg")
         pygame.mixer.music.set_volume(0.5)
         pygame.mixer.music.play(-1)
@@ -31,11 +34,15 @@ class Game:
             for obstacle in self.obstacles:
                 obstacle.draw()
             self.screen.blit(self.mono_surfaces.water, self.mono_surfaces.water_rect)
+            for bird in self.all_birds:
+                bird.draw()
             self.fish.draw()
             self.score.draw()
 
         elif self.state == "title screen":
             self.title_screen.draw()
+            if self.score.score != 0:
+                self.score.draw()
 
         pygame.display.update()
     
@@ -44,6 +51,8 @@ class Game:
             self.fish.update(tick)
             for obstacle in self.obstacles:
                 obstacle.move()
+            for bird in self.all_birds:
+                bird.move()
 
         elif self.state == "title screen":
             self.title_screen.update()
@@ -58,6 +67,9 @@ class Game:
                     self.spawn_obstacle()
                 if event.type == customevents.END_EVENT:
                     self.state = "title screen"
+                    self.score.update_surface(True)
+                if event.type == customevents.SPAWN_BIRD_EVENT:
+                    self.spawn_bird()
             elif self.state == "title screen":
                 self.title_screen.event(event)
 
@@ -66,7 +78,15 @@ class Game:
 
     def reset(self):
         self.obstacles = []
+        self.all_birds = []
         self.spawn_obstacle()
+        self.spawn_bird()
         self.score.reset()
         self.fish.reset()
         self.state = "in game"
+
+    def spawn_bird(self):
+        self.all_birds.append(BirdCow(self, (
+            random.randint(self.screen_width, self.screen_width + random.randint(0, 300)),
+            random.randint(self.mono_surfaces.water_rect.y, self.screen_height)
+        ), random.randint(3, 6)))

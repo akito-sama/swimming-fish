@@ -26,6 +26,7 @@ class MonoSurfaces:
         self.background = pygame.transform.scale(
             pygame.image.load("images/background.png"), (self.screen_width, self.screen_height)
         ).convert()
+        self.bird_surface = pygame.transform.scale2x(pygame.image.load("images/bird cow.png")).convert_alpha()
 
 
 if __name__ == "__main__":
