@@ -24,5 +24,11 @@ class Score:
     def draw(self):
         self.game.screen.blit(self.surface, self.surface_rect)
 
+    def end(self):
+        self.surface_rect.x, self.surface_rect.y = (self.game.screen_width // 2 - self.surface.get_width() // 2,
+                                                    self.game.screen_height // 2 - self.surface.get_height() // 2)
+
     def reset(self):
         self.score = 0
+        self.update_surface()
+

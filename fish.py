@@ -18,10 +18,12 @@ class Fish:
         self.charge_bar = LoadingBar(self)
         self.gravity = Gravity(self)
         self.state = "swimming"
+        self.list_verified = []
 
     def draw(self):
         self.charge_bar.draw()
         self.game.screen.blit(self.rotator.image, self.rect)
+        pygame.draw.rect(self.game.screen, (0, 255, 0), self.rect, 3)
 
     def update(self, tick):
         pressed = pygame.key.get_pressed()
@@ -77,9 +79,20 @@ class Fish:
             if self.rect.x <= limited_x:
                 self.rect.x = limited_x
 
+        self.points()
+
     def reset(self):
         self.x = 200
         self.rect = self.rotator.image.get_rect(x=self.x, y=self.initial_y)
         self.charge_bar.reset()
         self.gravity.reset()
         self.state = "swimming"
+        self.list_verified = []
+
+    def points(self):
+        for obstacle in self.game.obstacles:
+            if obstacle not in self.list_verified:
+                if obstacle.down_rectangle.x < self.rect.x + self.rotator.image.get_width() // 2 and obstacle.up_rectangle.y + obstacle.up_rectangle.width < self.rect.y < obstacle.down_rectangle.y:
+                    self.game.score.add_score(10)
+                    sounds.coin_sound.play()
+                    self.list_verified.append(obstacle)

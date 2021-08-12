@@ -9,11 +9,11 @@ class TitleScreen:
 
     def __init__(self, game):
         self.game = game
-        self.surface_title = title_font.render("Dori From Wish !!", True, (200, 200, 200))
+        self.surface_title = title_font.render("Dori From Wish !!", True, (255, 255, 255))
         self.white_surface_title = self.surface_title.copy()
         self.yellow_surface_title = title_font.render("Dori From Wish !!", True, "#fdd835")
         self.surface_title_rect = self.surface_title.get_rect(x=game.screen_width//2 - self.surface_title.get_width()//2,
-                                                              y=game.screen_height//2 - self.surface_title.get_height()//2)
+                                                              y=game.screen_height//2 - self.surface_title.get_height()//2 + 30)
 
     def event(self, event: pygame.event.Event):
         if event.type == pygame.KEYDOWN:
@@ -28,5 +28,5 @@ class TitleScreen:
             self.surface_title = self.white_surface_title
 
     def draw(self):
-        self.game.screen.fill((0, 0, 0))
+        self.game.screen.blit(self.game.mono_surfaces.background, (0, 0))
         self.game.screen.blit(self.surface_title, self.surface_title_rect)

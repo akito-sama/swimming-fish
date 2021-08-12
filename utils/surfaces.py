@@ -16,13 +16,16 @@ class MonoSurfaces:
         self.water_rect = self.water.get_rect(x=0, y=game.screen_height - self.water.get_height())
         # self.water.set_colorkey((0, 0, 0))
         pygame.draw.line(self.water, (255, 255, 255), (0, 0), (screen_width, 0), 5)
-        # self.water.set_alpha(80)
+        # self.water.set_alpha(200)
 
         # --------------- pic ------------------
         self.pic = pygame.transform.scale2x(pygame.image.load(
             "images/Mountain.png" if not __name__ == "__main__" else "../images/Mountain.png"
             )).convert_alpha()
         self.up_pic = pygame.transform.rotate(self.pic, 180)
+        self.background = pygame.transform.scale(
+            pygame.image.load("images/background.png"), (self.screen_width, self.screen_height)
+        ).convert()
 
 
 if __name__ == "__main__":

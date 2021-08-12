@@ -27,7 +27,7 @@ class Game:
 
     def draw(self):
         if self.state == "in game":
-            self.screen.fill((0, 0, 0))
+            self.screen.blit(self.mono_surfaces.background, (0, 0))
             for obstacle in self.obstacles:
                 obstacle.draw()
             self.screen.blit(self.mono_surfaces.water, self.mono_surfaces.water_rect)
