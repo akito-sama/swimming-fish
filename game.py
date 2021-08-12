@@ -88,5 +88,5 @@ class Game:
     def spawn_bird(self):
         self.all_birds.append(BirdCow(self, (
             random.randint(self.screen_width, self.screen_width + random.randint(0, 300)),
-            random.randint(self.mono_surfaces.water_rect.y, self.screen_height)
-        ), random.randint(3, 6)))
+            random.randint(self.mono_surfaces.water_rect.y, self.screen_height - self.mono_surfaces.bird_surface.get_height())
+        ), random.randint(4, 8)))
