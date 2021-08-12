@@ -16,3 +16,9 @@ class Rotator:
     def rotate(self):
         self.image = pygame.transform.rotate(self.original_image, round(self.angle))
         self.fish.rect = self.image.get_rect(center=self.fish.rect.center)
+
+    def reset(self):
+        self.image = self.original_image
+        self.fish.rect = self.image.get_rect(center=self.fish.rect.center)
+        self.angle = 0
+

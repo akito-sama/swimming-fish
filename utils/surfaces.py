@@ -6,13 +6,14 @@ class MonoSurfaces:
     of the game and also don't needed surfaces that is there for the
     decoration"""
 
-    def __init__(self, screen_width, screen_height):
+    def __init__(self, game, screen_width, screen_height):
         self.screen_height = screen_height
         self.screen_width = screen_width
 
         # --------------- water ---------------
         self.water = pygame.Surface((self.screen_width, (screen_height / 2.3)))
         self.water.fill((91, 162, 200))
+        self.water_rect = self.water.get_rect(x=0, y=game.screen_height - self.water.get_height())
         # self.water.set_colorkey((0, 0, 0))
         pygame.draw.line(self.water, (255, 255, 255), (0, 0), (screen_width, 0), 5)
         # self.water.set_alpha(80)

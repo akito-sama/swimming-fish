@@ -8,7 +8,7 @@ import sounds
 class Fish:
 
     def __init__(self, game):
-        self.x_velocity = 2
+        self.x_velocity = 5
         self.game = game
         self.x = 200
         self.initial_y = self.game.screen.get_height() - self.game.mono_surfaces.water.get_height() / 2
@@ -76,3 +76,10 @@ class Fish:
             limited_x = 0
             if self.rect.x <= limited_x:
                 self.rect.x = limited_x
+
+    def reset(self):
+        self.x = 200
+        self.rect = self.rotator.image.get_rect(x=self.x, y=self.initial_y)
+        self.charge_bar.reset()
+        self.gravity.reset()
+        self.state = "swimming"

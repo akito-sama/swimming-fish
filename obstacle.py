@@ -24,7 +24,7 @@ class Obstacle:
             self.game.obstacles.remove(self)
             pygame.event.post(pygame.event.Event(customevents.SPAWN_OBSTACLE_EVENT))
         if self.check_collision():
-            self.game.state = "title screen"
+            pygame.event.post(pygame.event.Event(customevents.END_EVENT))
 
     def draw(self):
         self.game.screen.blit(self.game.mono_surfaces.up_pic, self.up_rectangle)

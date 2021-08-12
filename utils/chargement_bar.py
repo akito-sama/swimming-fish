@@ -28,3 +28,6 @@ class LoadingBar:
                     self.value = self.limit
                 elif self.limit < self.value:
                     self.value = 0
+
+    def reset(self):
+        self.value = 0
